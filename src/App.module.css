@@ -11,6 +11,11 @@
   margin-bottom: 24px;
 }
 
+h1 {
+  font-family: 'Seto';
+  font-size: 72px;
+}
+
 .appLogo {
   height: 10vmin;
   pointer-events: none;

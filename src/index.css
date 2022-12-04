@@ -12,3 +12,8 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+@font-face {
+  font-family: 'Seto';
+  src: local('Seto'), url(./assets/fonts/setofont.ttf) format('truetype');
+}
