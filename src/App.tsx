@@ -12,7 +12,7 @@ function App() {
     <div className={styles.app}>
       <div className={styles.appHeader}>
         <img src={logo} alt="logo" className={styles.appLogo} />
-        <h1>羅伯特機器人 Robot</h1>
+        <h1>羅伯特機器人 Robot 裝甲明朝</h1>
       </div>
       <div className={styles.robotList}>
         {robots.map((r) => (
