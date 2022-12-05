@@ -1,5 +1,6 @@
 import React from 'react';
 import styles from './ShoppingCart.module.css';
+import { FiShoppingCart } from 'react-icons/fi';
 
 interface Props {}
 
@@ -16,14 +17,21 @@ class ShoppingCart extends React.Component<Props, State> {
     this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
+  /**
+   * target:事件發生的元素
+   * currentTarget:事件處理綁定的元素
+   */
+  handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+    console.log('e.target', e.target);
+    console.log('e.currentTarget', e.currentTarget);
     this.setState({ isOpen: !this.state.isOpen });
-  }
+  };
 
   render() {
     return (
       <div className={styles.cartContainer}>
         <button className={styles.button} onClick={this.handleClick}>
+          <FiShoppingCart />
           購物車 2 (件)
         </button>
         <div
