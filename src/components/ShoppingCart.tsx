@@ -13,11 +13,12 @@ class ShoppingCart extends React.Component<Props, State> {
     this.state = {
       isOpen: false,
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
-  handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
+  handleClick(e: React.MouseEvent<HTMLButtonElement, MouseEvent>) {
     this.setState({ isOpen: !this.state.isOpen });
-  };
+  }
 
   render() {
     return (
