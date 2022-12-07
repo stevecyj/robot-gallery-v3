@@ -27,9 +27,16 @@ const App: React.FC = (props) => {
   }, [count]);
 
   useEffect(() => {
-    fetch('https://jsonplaceholder.typicode.com/users')
-      .then((response) => response.json())
-      .then((data) => setRobotGallery(data));
+    const fetchData = async () => {
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/users'
+      );
+      // .then((response) => response.json())
+      // .then((data) => setRobotGallery(data));
+      const data = await response.json();
+      setRobotGallery(data);
+    };
+    fetchData();
   }, []);
 
   return (
