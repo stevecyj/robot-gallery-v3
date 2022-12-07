@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import logo from './assets/images/logo.svg';
 // import robots from './mockdata/robots.json';
 import Robot from './components/Robot';
@@ -20,6 +20,17 @@ interface State {
 
 const App: React.FC = (props) => {
   const [count, setCount] = useState<number>(0);
+  const [robotGallery, setRobotGallery] = useState<any>([]); // data from api, type any
+
+  useEffect(() => {
+    document.title = `點擊${count}次`;
+  }, [count]);
+
+  useEffect(() => {
+    fetch('https://jsonplaceholder.typicode.com/users')
+      .then((response) => response.json())
+      .then((data) => setRobotGallery(data));
+  }, []);
 
   return (
     <div className={styles.app}>
@@ -30,18 +41,17 @@ const App: React.FC = (props) => {
       <button
         onClick={() => {
           setCount(count + 1);
-          console.log('count', count);
         }}
       >
         click
       </button>
       <span>count: {count}</span>
       <ShoppingCart />
-      {/* <div className={styles.robotList}>
-        {this.state.robotGallery.map((r) => (
+      <div className={styles.robotList}>
+        {robotGallery.map((r) => (
           <Robot id={r.id} email={r.email} name={r.name} />
         ))}
-      </div> */}
+      </div>
     </div>
   );
 };
