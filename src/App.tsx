@@ -21,12 +21,15 @@ interface State {
 const App: React.FC = (props) => {
   const [count, setCount] = useState<number>(0);
   const [robotGallery, setRobotGallery] = useState<any>([]); // data from api, type any
+  const [loading, setLoading] = useState<boolean>(false);
 
   useEffect(() => {
     document.title = `點擊${count}次`;
   }, [count]);
 
   useEffect(() => {
+    setLoading(true);
+
     const fetchData = async () => {
       const response = await fetch(
         'https://jsonplaceholder.typicode.com/users'
@@ -35,6 +38,7 @@ const App: React.FC = (props) => {
       // .then((data) => setRobotGallery(data));
       const data = await response.json();
       setRobotGallery(data);
+      setLoading(false);
     };
     fetchData();
   }, []);
@@ -54,11 +58,15 @@ const App: React.FC = (props) => {
       </button>
       <span>count: {count}</span>
       <ShoppingCart />
-      <div className={styles.robotList}>
-        {robotGallery.map((r) => (
-          <Robot id={r.id} email={r.email} name={r.name} />
-        ))}
-      </div>
+      {!loading ? (
+        <div className={styles.robotList}>
+          {robotGallery.map((r) => (
+            <Robot id={r.id} email={r.email} name={r.name} />
+          ))}
+        </div>
+      ) : (
+        <h2>loading 加載中</h2>
+      )}
     </div>
   );
 };
